@@ -37,21 +37,32 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView exitText = (TextView) findViewById(R.id.exitText);
         final Button yesBtn = (Button) findViewById(R.id.yesBtn);
+        final Button noBtn = (Button) findViewById(R.id.noBtn);
+
         final FloatingActionButton exitBtn = findViewById(R.id.exitBtn);
         exitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 exitText.setVisibility(View.VISIBLE);
                 yesBtn.setVisibility(View.VISIBLE);
+                noBtn.setVisibility(View.VISIBLE);
+
                 yesBtn.setOnClickListener(new View.OnClickListener() {           // Yes Button
                     @Override
                     public void onClick(View v) {
-                        //finishAffinity();
                         System.exit(0);
-                        //finish();
-                        //finishAndRemoveTask();
                     }
                 });
+                //no button stuff
+                noBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        exitText.setVisibility(View.GONE);
+                        yesBtn.setVisibility(View.GONE);
+                        noBtn.setVisibility(View.GONE);
+                    }
+                });
+
                 }
             });
 
