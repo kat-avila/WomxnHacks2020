@@ -18,7 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
-    TextView questionText;
+    //TextView questionText;
     //String[] questions;
     //int[] answers;
     boolean answered = false;
