@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">My Application Test 1</string>
+    <string name="app_name">Study Mode</string>
     <string name="action_settings">Settings</string>
-
-    <string-array name="subjects" >
-        <item>Math</item>
-        <item>Physics</item>
-        <item>CS</item>
-    </string-array>
+    <string name="displayText">Stop procrastinating!\nTurning on study mode will stop you from accessing other apps.</string>
+    <string name="question1">2 + 2 = ?</string>
+    <string name="question1Ans">4</string>
+    <string name="question2">5 * 4 = ?</string>
+    <string name="question2Ans">20</string>
+    <string name="question3">12 * 5 = ?</string>
+    <string name="question3Ans">60</string>
 </resources>
