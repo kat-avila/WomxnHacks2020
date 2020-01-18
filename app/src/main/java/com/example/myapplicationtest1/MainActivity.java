@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         //questionText = (TextView) findViewById(R.id.question);
-        Button submitBtn = (Button) findViewById(R.id.submitButton);
 
 
-
+        final EditText editText = (EditText) findViewById(R.id.editText);
+        final Button submitBtn = (Button) findViewById(R.id.submitButton);
         final TextView question = (TextView) findViewById(R.id.question);
         final Switch sw = (Switch) findViewById(R.id.switch1);
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -57,15 +57,21 @@ public class MainActivity extends AppCompatActivity {
                 if(isChecked){
                     // pin the screen
                     question.setVisibility(View.VISIBLE);
+                    editText.setVisibility(View.VISIBLE);
+                    submitBtn.setVisibility(View.VISIBLE);
                     startLockTask();
                 }else{
                     //int rand = (int)(Math.random() * questions.length);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Answer the question correctly to unlock study mode.", Toast.LENGTH_SHORT);
+                    toast.show();
                         if(answered){
+                            question.setVisibility(View.INVISIBLE);
+                            editText.setVisibility(View.INVISIBLE);
+                            submitBtn.setVisibility(View.INVISIBLE);
                             stopLockTask();
                         }else{
                             sw.toggle();
-                            Toast toast = Toast.makeText(getApplicationContext(), "Answer the question correctly to unlock study mode.", Toast.LENGTH_SHORT);
-                            toast.show();
+
                         }
                 }
             }
