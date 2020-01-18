@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -50,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
         final EditText editText = (EditText) findViewById(R.id.editText);
         final Button submitBtn = (Button) findViewById(R.id.submitButton);
         final TextView question = (TextView) findViewById(R.id.question);
+        final ConstraintLayout bg = (ConstraintLayout) findViewById(R.id.layoutBg);
+        //#B97299 , #DBD0D9 PINKS
+        //#72B9B9, #D0DBDB  BLUES
+
+        //Set default bg and toolbar theme to blue
+        bg.setBackgroundColor(0xFFD0DBDB);
+        toolbar.setBackgroundColor(0xFF72B9B9);
+
         final Switch sw = (Switch) findViewById(R.id.switch1);
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -59,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
                     question.setVisibility(View.VISIBLE);
                     editText.setVisibility(View.VISIBLE);
                     submitBtn.setVisibility(View.VISIBLE);
+                    bg.setBackgroundColor(0xFFDBD0D9);
+                    toolbar.setBackgroundColor(0xFFB97299);
                     startLockTask();
                 }else{
                     //int rand = (int)(Math.random() * questions.length);
@@ -69,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
                             editText.setVisibility(View.INVISIBLE);
                             submitBtn.setVisibility(View.INVISIBLE);
                             stopLockTask();
+                            bg.setBackgroundColor(0xFFD0DBDB);
+                            toolbar.setBackgroundColor(0xFF72B9B9);
+                            answered = false;
                         }else{
                             sw.toggle();
 
