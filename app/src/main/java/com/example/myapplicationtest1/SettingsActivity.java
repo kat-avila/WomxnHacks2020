@@ -1,7 +1,9 @@
 package com.example.myapplicationtest1;
 
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -24,15 +26,12 @@ public class SettingsActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-
-
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
-
 
             //Preference resetPref = (Preference) findViewById(R.id.resetLockSetting);
             findPreference("resetPref").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
