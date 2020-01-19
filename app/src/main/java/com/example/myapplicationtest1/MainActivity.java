@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
+import android.preference.Preference;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,8 +18,6 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         final Button yesBtn = (Button) findViewById(R.id.yesBtn);
         final Button noBtn = (Button) findViewById(R.id.noBtn);
 
+
         final FloatingActionButton exitBtn = findViewById(R.id.exitBtn);
         exitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 yesBtn.setOnClickListener(new View.OnClickListener() {           // Yes Button
                     @Override
                     public void onClick(View v) {
+
+
                         System.exit(0);
+
                     }
                 });
                 //no button stuff
@@ -182,3 +186,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+
+
