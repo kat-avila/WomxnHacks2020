@@ -28,7 +28,7 @@
     <Preference
         android:id="@+id/about"
         app:enabled="false"
-        app:summary="Developed for WomxnHacks 2020 by NAME, NAME, NAME, NAME, and NAME."
+        app:summary="Developed for WomxnHacks 2020 by Kat Avila, Alison Huang, Alyssa Keehan, Kyara Rodriguez, and Janet Zhao."
         app:title="About this app"></Preference>
 
 </PreferenceScreen>

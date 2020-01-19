@@ -1,6 +1,7 @@
 package com.example.myapplicationtest1;
 
 
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.content.Intent;
 import android.os.Bundle;
@@ -76,18 +77,37 @@ public class MainActivity extends AppCompatActivity {
 
 
         final ConstraintLayout bg = (ConstraintLayout) findViewById(R.id.layoutBg);
-        //#B97299 , #DBD0D9 PINKS
-        //#72B9B9, #D0DBDB  BLUES
-
-        //Set default bg and toolbar theme to blue
-        bg.setBackgroundColor(0xFFD0DBDB);
-        toolbar.setBackgroundColor(0xFF72B9B9);
-
 
         final EditText editText = (EditText) findViewById(R.id.editText);
         final Button submitBtn = (Button) findViewById(R.id.submitButton);
         final TextView question = (TextView) findViewById(R.id.question);
+
+        //#B97299 , #DBD0D9 PINKS
+        //#72B9B9, #D0DBDB  BLUES
+
         final Switch sw = (Switch) findViewById(R.id.switch1);
+
+        //check if the switch was on or off last time this activity was active
+        SharedPreferences switchSettings = getSharedPreferences("SwitchPreference", 0);
+        boolean silent = switchSettings.getBoolean("switchkey", false);
+        sw.setChecked(silent);
+
+
+        //Set default bg and toolbar theme depending on the state of the switch
+        if(silent) {
+            question.setVisibility(View.VISIBLE);
+            editText.setVisibility(View.VISIBLE);
+            submitBtn.setVisibility(View.VISIBLE);
+            bg.setBackgroundColor(0xFFDBD0D9);
+            toolbar.setBackgroundColor(0xFFB97299);
+        }else {
+            question.setVisibility(View.INVISIBLE);
+            editText.setVisibility(View.INVISIBLE);
+            submitBtn.setVisibility(View.INVISIBLE);
+            bg.setBackgroundColor(0xFFD0DBDB);
+            toolbar.setBackgroundColor(0xFF72B9B9);
+        }
+
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -111,10 +131,16 @@ public class MainActivity extends AppCompatActivity {
                             bg.setBackgroundColor(0xFFD0DBDB);
                             toolbar.setBackgroundColor(0xFF72B9B9);
                             answered = false;
-                        }else{
-                            sw.toggle();
 
+                            //save the switch's state
+                            SharedPreferences switchSettings = getSharedPreferences("SwitchPreference", 0);
+                            SharedPreferences.Editor editor = switchSettings.edit();
+                            editor.putBoolean("switchkey", isChecked);
+                            editor.commit();
+                        }else{
+                            sw.setChecked(true);
                         }
+
                 }
             }
         });
