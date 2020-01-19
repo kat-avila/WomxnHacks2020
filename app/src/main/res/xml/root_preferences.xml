@@ -25,15 +25,6 @@
         app:summary="Turn off the screen lock without answering a question"
         app:title="Reset screen lock"> </Preference>
 
-    <Preference
-        android:id="@+id/passwordSettings"
-        android:clickable="true"
-        android:enabled="true"
-        android:inputType="numberPassword"
-        android:key="passwordSettings"
-        android:onClick="onButtonTap"
-        android:title="Password Settings"
-        app:summary="Choose and enter password"></Preference>
 
     <Preference
         android:id="@+id/about"

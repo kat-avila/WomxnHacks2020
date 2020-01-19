@@ -58,6 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="false"
+        android:fontFamily="sans-serif-light"
         android:hint=" Enable Study Mode"
         android:textColor="#050505"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -145,25 +146,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <DigitalClock
-        android:id="@+id/digitalClock"
-        android:layout_width="80sp"
-        android:layout_height="27dp"
-        android:layout_marginStart="170dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginBottom="643dp"
-        android:textColor="#000000"
-        android:textSize="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/timerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
         android:text="Timer: 1hr"
         android:textColor="#F5090000"
         android:textSize="30sp"
@@ -173,21 +160,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.351" />
-
-    <TextView
-        android:id="@+id/secondText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Seconds"
-        android:textColor="#070000"
-        android:textSize="24sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.761"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.354" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
