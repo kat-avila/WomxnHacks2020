@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         //check if the switch was on or off last time this activity was active
         SharedPreferences switchSettings = getSharedPreferences("SwitchPreference", 0);
-        boolean silent = switchSettings.getBoolean("switchkey", false);
+        boolean silent = switchSettings.getBoolean("switchkey", true);
         sw.setChecked(silent);
 
 
@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     bg.setBackgroundColor(0xFFDBD0D9);
                     toolbar.setBackgroundColor(0xFFB97299);
                     startLockTask();
+
                 }else{
                     //int rand = (int)(Math.random() * questions.length);
                     Toast toast = Toast.makeText(getApplicationContext(), "Answer the question correctly to unlock study mode.", Toast.LENGTH_SHORT);
@@ -131,17 +132,18 @@ public class MainActivity extends AppCompatActivity {
                             bg.setBackgroundColor(0xFFD0DBDB);
                             toolbar.setBackgroundColor(0xFF72B9B9);
                             answered = false;
-
-                            //save the switch's state
-                            SharedPreferences switchSettings = getSharedPreferences("SwitchPreference", 0);
-                            SharedPreferences.Editor editor = switchSettings.edit();
-                            editor.putBoolean("switchkey", isChecked);
-                            editor.commit();
                         }else{
                             sw.setChecked(true);
+                            isChecked = true;
                         }
 
                 }
+
+                //save the switch's state
+                SharedPreferences switchSettings = getSharedPreferences("SwitchPreference", 0);
+                SharedPreferences.Editor editor = switchSettings.edit();
+                editor.putBoolean("switchkey", isChecked);
+                editor.commit();
             }
         });
 
