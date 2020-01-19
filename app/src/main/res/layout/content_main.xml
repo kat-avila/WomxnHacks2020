@@ -5,7 +5,7 @@
     android:id="@+id/layoutBg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFEB3B"
+    android:background="#CEA8D8"
     android:scrollbarTrackHorizontal="@android:drawable/btn_dialog"
     android:scrollbarTrackVertical="@color/colorAccent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -155,24 +155,13 @@
         android:layout_marginEnd="161dp"
         android:layout_marginRight="161dp"
         android:layout_marginBottom="643dp"
-        android:textSize="24sp"
+        android:textSize="24dp"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edit_text_input"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/text_view_countdown"
-        android:layout_centerHorizontal="true"
-        android:hint="Minutes"
-        android:inputType="number"
-        android:maxLength="4"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="214dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
