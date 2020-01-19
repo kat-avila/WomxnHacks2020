@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
+import java.util.Objects;
+
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
@@ -34,7 +36,7 @@ public class SettingsActivity extends AppCompatActivity {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
 
             //Preference resetPref = (Preference) findViewById(R.id.resetLockSetting);
-            findPreference("resetPref").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            Objects.requireNonNull(findPreference("resetPref")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference pref) {
                     getActivity().stopLockTask();

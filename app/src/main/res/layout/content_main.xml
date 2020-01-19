@@ -57,6 +57,7 @@
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:checked="false"
         android:hint=" Enable Study Mode"
         android:textColor="#050505"
         app:layout_constraintBottom_toBottomOf="parent"
