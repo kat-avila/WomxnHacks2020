@@ -1,6 +1,8 @@
 package com.example.myapplicationtest1;
 
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.content.Intent;
@@ -26,10 +28,7 @@ import com.google.android.material.snackbar.Snackbar;
 import static android.app.PendingIntent.getActivity;
 
 public class MainActivity extends AppCompatActivity {
-    //TextView questionText;
-    //String[] questions;
-    //int[] answers;
-    boolean answered = false;
+    private boolean answered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ActivityManager activityManager;
+        activityManager = (ActivityManager)
+                this.getSystemService(Context.ACTIVITY_SERVICE);
 
         final TextView exitText = (TextView) findViewById(R.id.exitText);
         final Button yesBtn = (Button) findViewById(R.id.yesBtn);
@@ -70,11 +73,6 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
-        //this is me trying to do random question functionality
-        //questions = {getString(R.string.question1), getString(R.string.question2), getString(R.string.question3)};
-       // answers = {Integer.parseInt(getString(R.string.question1Ans)), Integer.parseInt(getString(R.string.question2Ans)), Integer.parseInt(getString(R.string.question3Ans))};
-        //questionText = (TextView) findViewById(R.id.question);
-
 
         final ConstraintLayout bg = (ConstraintLayout) findViewById(R.id.layoutBg);
 
@@ -87,20 +85,17 @@ public class MainActivity extends AppCompatActivity {
 
         final Switch sw = (Switch) findViewById(R.id.switch1);
 
-        //check if the switch was on or off last time this activity was active
-        SharedPreferences switchSettings = getSharedPreferences("SwitchPreference", 0);
-        boolean silent = switchSettings.getBoolean("switchkey", true);
-        sw.setChecked(silent);
-
 
         //Set default bg and toolbar theme depending on the state of the switch
-        if(silent) {
+        if(activityManager.getLockTaskModeState() != 0) {
+            sw.setChecked(true);
             question.setVisibility(View.VISIBLE);
             editText.setVisibility(View.VISIBLE);
             submitBtn.setVisibility(View.VISIBLE);
             bg.setBackgroundColor(0xFFDBD0D9);
             toolbar.setBackgroundColor(0xFFB97299);
         }else {
+            sw.setChecked(false);
             question.setVisibility(View.INVISIBLE);
             editText.setVisibility(View.INVISIBLE);
             submitBtn.setVisibility(View.INVISIBLE);
@@ -134,22 +129,15 @@ public class MainActivity extends AppCompatActivity {
                             answered = false;
                         }else{
                             sw.setChecked(true);
-                            isChecked = true;
                         }
 
                 }
 
-                //save the switch's state
-                SharedPreferences switchSettings = getSharedPreferences("SwitchPreference", 0);
-                SharedPreferences.Editor editor = switchSettings.edit();
-                editor.putBoolean("switchkey", isChecked);
-                editor.commit();
             }
         });
 
 
     }
-
 
     public void onButtonTap(View v){
             EditText userAns = (EditText) findViewById(R.id.editText);
