@@ -3,12 +3,9 @@ package com.example.myapplicationtest1;
 
 import android.app.ActivityManager;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Build;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
-import android.preference.Preference;
+import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,22 +15,30 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import static android.app.PendingIntent.getActivity;
+import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
+    public int counter;
+    Button button;
+    TextView textView;
+
     private boolean answered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Timer
+        TextView textView= (TextView) findViewById(R.id.textView);
+
+
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -57,10 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 yesBtn.setOnClickListener(new View.OnClickListener() {           // Yes Button
                     @Override
                     public void onClick(View v) {
-
-
                         System.exit(0);
-
                     }
                 });
                 //no button stuff
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText editText = (EditText) findViewById(R.id.editText);
         final Button submitBtn = (Button) findViewById(R.id.submitButton);
         final TextView question = (TextView) findViewById(R.id.question);
+        final TextView secondText = (TextView) findViewById(R.id.secondText);
 
         //#B97299 , #DBD0D9 PINKS
         //#72B9B9, #D0DBDB  BLUES
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             question.setVisibility(View.VISIBLE);
             editText.setVisibility(View.VISIBLE);
             submitBtn.setVisibility(View.VISIBLE);
+            secondText.setVisibility(View.VISIBLE);
             bg.setBackgroundColor(0xFFDBD0D9);
             toolbar.setBackgroundColor(0xFFB97299);
         }else {
@@ -103,10 +107,11 @@ public class MainActivity extends AppCompatActivity {
             question.setVisibility(View.INVISIBLE);
             editText.setVisibility(View.INVISIBLE);
             submitBtn.setVisibility(View.INVISIBLE);
+            secondText.setVisibility(View.INVISIBLE);
             bg.setBackgroundColor(0xFFD0DBDB);
             toolbar.setBackgroundColor(0xFF72B9B9);
         }
-
+        // dis our switch stuff
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -115,11 +120,25 @@ public class MainActivity extends AppCompatActivity {
                     question.setVisibility(View.VISIBLE);
                     editText.setVisibility(View.VISIBLE);
                     submitBtn.setVisibility(View.VISIBLE);
+                    secondText.setVisibility(View.VISIBLE);
                     bg.setBackgroundColor(0xFFDBD0D9);
                     toolbar.setBackgroundColor(0xFFB97299);
                     startLockTask();
 
-                }else{
+                    textView = new CountDownTimer(3600000, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            textView.setText(String.valueOf(counter));
+                            counter++;
+                        }
+
+                        public void onFinish() {
+                            textView.setText("Finish!!");
+                            stopLockTask();
+                        }
+                    }.start();
+                } else{
+                    textView.cancel();
                     //int rand = (int)(Math.random() * questions.length);
                     Toast toast = Toast.makeText(getApplicationContext(), "Answer the question correctly to unlock study mode.", Toast.LENGTH_SHORT);
                     toast.show();
@@ -127,19 +146,19 @@ public class MainActivity extends AppCompatActivity {
                             question.setVisibility(View.INVISIBLE);
                             editText.setVisibility(View.INVISIBLE);
                             submitBtn.setVisibility(View.INVISIBLE);
+                            secondText.setVisibility(View.INVISIBLE);
+
                             stopLockTask();
                             bg.setBackgroundColor(0xFFD0DBDB);
                             toolbar.setBackgroundColor(0xFF72B9B9);
                             answered = false;
+                            //textView = null;
                         }else{
                             sw.setChecked(true);
                         }
-
                 }
-
             }
         });
-
 
     }
 
@@ -185,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
 
 

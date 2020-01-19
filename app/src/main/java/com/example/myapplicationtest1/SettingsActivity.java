@@ -1,10 +1,6 @@
 package com.example.myapplicationtest1;
 
 import android.os.Bundle;
-import android.preference.EditTextPreference;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;

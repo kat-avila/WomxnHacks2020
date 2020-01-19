@@ -25,17 +25,18 @@
         app:summary="Turn off the screen lock without answering a question"
         app:title="Reset screen lock"> </Preference>
 
-    <EditTextPreference
-        android:id="@+id/passwordsettings"
+    <Preference
+        android:id="@+id/passwordSettings"
+        android:clickable="true"
+        android:enabled="true"
         android:inputType="numberPassword"
-        android:isScrollContainer="false"
-        android:key="passwordsettings"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="Password Settings" > </EditTextPreference>
+        android:key="passwordSettings"
+        android:onClick="onButtonTap"
+        android:title="Password Settings"
+        app:summary="Choose and enter password"></Preference>
 
     <Preference
-        android:id="@+id/password"
+        android:id="@+id/about"
         android:background="#207DC7"
         android:foregroundGravity="center"
         app:enabled="false"
