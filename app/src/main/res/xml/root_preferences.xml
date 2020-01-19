@@ -23,12 +23,23 @@
         app:enabled="true"
         app:key = "resetPref"
         app:summary="Turn off the screen lock without answering a question"
-        app:title="Reset screen lock"></Preference>
+        app:title="Reset screen lock"> </Preference>
+
+    <EditTextPreference
+        android:id="@+id/passwordsettings"
+        android:inputType="numberPassword"
+        android:isScrollContainer="false"
+        android:key="passwordsettings"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Password Settings" > </EditTextPreference>
 
     <Preference
-        android:id="@+id/about"
+        android:id="@+id/password"
+        android:background="#207DC7"
+        android:foregroundGravity="center"
         app:enabled="false"
         app:summary="Developed for WomxnHacks 2020 by Kat Avila, Alison Huang, Alyssa Keehan, Kyara Rodriguez, and Janet Zhao."
-        app:title="About this app"></Preference>
+        app:title="About this app"> </Preference>
 
 </PreferenceScreen>
